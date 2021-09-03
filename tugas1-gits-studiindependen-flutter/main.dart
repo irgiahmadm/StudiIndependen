@@ -24,6 +24,10 @@ class Main {
     };
 
     listAccount = [account1, account2];
+    inputPin();
+  }
+
+  inputPin() {
     stdout.write("Input pin number:");
     var pin = stdin.readLineSync();
     if (isAccountExist(pin, 'pin')) {
@@ -40,7 +44,8 @@ class Main {
     stdout.writeln("2.Tarik Tunai");
     stdout.writeln("3.Setor Tunai");
     stdout.writeln("4.Check balance");
-    stdout.writeln("5.Exit");
+    stdout.writeln("5.End Session");
+    stdout.writeln("6.Exit");
     stdout.write("Choice: ");
     var input = stdin.readLineSync();
     action(pin, input);
@@ -120,8 +125,15 @@ class Main {
         break;
       case '5':
         {
+          stdout.writeln("Last session is ended.");
+          inputPin();
+        }
+        break;
+      case '6':
+        {
           exit(0);
         }
+        break;
     }
   }
 
@@ -157,7 +169,6 @@ class Main {
       var newBalance, var pinOrNumber, var property, var operation, var pin) {
     listAccount.forEach((element) {
       if (pinOrNumber == element[property]) {
-        stdout.writeln('found!');
         if (operation == 'add') {
           element['balance'] += newBalance;
           stdout.writeln('Balance is added.');
